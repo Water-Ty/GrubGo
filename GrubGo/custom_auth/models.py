@@ -12,10 +12,10 @@ class CustomUser(AbstractUser):
         ('teacher', 'Teacher'),
         ('chef', 'Chef'),
     ]
-    school = models.ForeignKey('School', on_delete=models.CASCADE)
+    school = models.ForeignKey('School', on_delete=models.CASCADE, null=True, blank=True)
     role = models.CharField(max_length=200, null=False, blank=False, choices=USER_JOB_CHOICES, default='student')
     email = models.EmailField(max_length=200, null=False, blank=False, unique=True)
-    credit = models.IntegerField(null=False, blank=False,)
+    credit = models.IntegerField(null=True, blank=True, default=0)
     def __str__(self):
         return self.username
 
