@@ -1,6 +1,7 @@
 from django import forms
 from .models import CustomUser, School
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 class SchoolModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.school_code
@@ -29,3 +30,7 @@ class CustomUserCreationForm(UserCreationForm):
 
         return cleaned_data
 
+
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(max_length=254, widget=forms.TextInput(attrs={'autofocus': True}))
