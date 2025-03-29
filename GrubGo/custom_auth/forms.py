@@ -33,4 +33,5 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(max_length=254, widget=forms.TextInput(attrs={'autofocus': True}))
+    username = forms.CharField()
+    password = forms.CharField()
