@@ -32,6 +32,18 @@
             <li><a class="dropdown-item" href={% url "custom_auth:confirmlogout" %}>Logout</a></li>
           </ul>
         </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Schools
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href= {% url "school:add-school" %}>Add School</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href={% url "school:join-school" %}>Join School</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href={% url "school:list-schools" %}>Your Schools</a></li>
+          </ul>
+        </li>
 {#        <li class="nav-item">#}
 {#          <a class="nav-link disabled" aria-disabled="true">Disabled</a>#}
 {#        </li>#}
