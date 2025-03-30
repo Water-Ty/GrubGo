@@ -1,0 +1,20 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+    <h1 class="text-primary">Your organizations</h1>
+
+    {% if schools %}
+        <ul class="list-group">
+        {% for item in schools %}
+            <li class="list-group-item">
+                <h6 class="text-info">Organization Name:</h6>
+                <p>{{ item.school_name }}</p>
+                <h6 class="text-info">Organization Code:</h6>
+                <p>{{ item.school_code }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No organizations</p>
+    {% endif %}
+{% endblock %}

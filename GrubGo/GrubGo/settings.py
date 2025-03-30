@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "main",
     "custom_auth",
     "order",
+    "school",
     "crispy_forms",
     "crispy_bootstrap5",
 ]

@@ -31,11 +31,13 @@ class CustomUser(AbstractUser):
 
 
 class School(models.Model):
-    school_name = models.CharField(max_length=200, null=False, blank=False)
+    school_name = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    school_description = models.TextField(null=False, blank=False, unique=False, default="My Unique Orginization!")
     school_code = models.CharField(
-        max_length=7, unique=True, blank=True, null=True
-    )  # Add this field
-
+        max_length=7, unique=True, blank=True, null=True,
+    )
+    def __str__(self):
+        return self.school_name
     @property
     def formatted_code(self):
         return f"{self.school_code:07d}"
