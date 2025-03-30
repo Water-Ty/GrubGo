@@ -8,9 +8,10 @@
         {% for item in schools %}
             <li class="list-group-item">
                 <h6 class="text-info">Organization Name:</h6>
-                <p>{{ item.school_name }}</p>
+                <p><a href="{{ item.get_absolute_url }}">{{ item.school_name }}</a></p>
                 <h6 class="text-info">Organization Code:</h6>
                 <p>{{ item.school_code }}</p>
+
             </li>
         {% endfor %}
         </ul>

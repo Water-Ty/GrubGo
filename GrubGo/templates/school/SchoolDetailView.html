@@ -1,0 +1,26 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">School Information</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h6 class="font-weight-bold">School Name</h6>
+            <p>{{ school.school_name }}</p>
+        </div>
+        <div class="col-md-4">
+            <h6 class="font-weight-bold">School Code</h6>
+            <p>{{ school.school_code }}</p>
+        </div>
+        <div class="col-md-4">
+            <h6 class="font-weight-bold">School Description</h6>
+            <p>{{ school.school_description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
