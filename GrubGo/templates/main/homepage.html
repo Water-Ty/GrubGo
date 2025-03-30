@@ -1,8 +1,39 @@
-{%  extends 'main/base.html' %}
+{%  extends "main/base.html" %}
+{%  load static %}
 
-{% block title %}Hello{% endblock %}
+{%  block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
 
-{% block content%}
-    <h1> HomePage </h1>
+<body>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to GrubGo</h1>
+        <p>Your number one solution for solving food waste.</p><br>
+        {% if user.is_authenticated %}
+            <a class="cta-btn" href={% url "custom_auth:confirmlogout" %}>Sign Out</a>
+        {%  else %}
+            <a class = "cta-btn" href={% url "custom_auth:login" %}>Sign in</a><a class = "cta-btn" href={% url "custom_auth:register" %}>Register</a>
+        {%  endif  %}
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>We are a team of professionals dedicated to providing top-notch services to our schools</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Your Website. All rights reserved.</p>
+    </footer>
 
 {% endblock %}
