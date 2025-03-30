@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from .forms import CustomUserCreationForm, CustomLoginForm
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class CustomUserCreationView(FormView):
@@ -44,7 +44,7 @@ class CustomLogoutView(LogoutView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class ConfirmLogout(TemplateView):
+class ConfirmLogout(TemplateView, LoginRequiredMixin):
     template_name = "auth/user_logout_form.html"
 
     def dispatch(self, request, *args, **kwargs):

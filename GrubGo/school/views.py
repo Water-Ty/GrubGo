@@ -8,7 +8,7 @@ from custom_auth.models import School
 
 # Create your views here.
 
-class AddSchoolForm(CreateView):
+class AddSchoolForm(CreateView, LoginRequiredMixin):
     model = School
     form_class = SchoolForm
     template_name = "school/AddSchool.html"
