@@ -45,6 +45,9 @@
     <!-- Orders Section -->
     <div class="mt-5">
         <h2 class="text-center mb-4">Orders for {{ school.school_name }}</h2>
+<a href="{% url 'order:order' school_code=school.school_code %}" class="btn btn-primary btn-lg mb-4" role="button" data-toggle="tooltip" title="View Orders for {{ school.school_name }}">
+    Order
+</a>
 
         {% if orders %}
             <div class="list-group">

@@ -4,10 +4,11 @@ from .forms import OrderForm
 from .models import Order
 from django.shortcuts import get_object_or_404
 from custom_auth.models import School
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class OrderView(CreateView):
+class OrderView(CreateView, LoginRequiredMixin):
     model = Order
     template_name = "orders/Order.html"
     form_class = OrderForm

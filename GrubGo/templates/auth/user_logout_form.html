@@ -1,8 +1,10 @@
 {% extends 'auth/base2.html' %}
 
 {% block content %}
-    <form method = "post" action={% url "custom_auth:logout" %}>
-    {%  csrf_token %}
-    <button type="submit" class="btn btn-danger">LOGOUT</button>
-    </form>
-{%  endblock %}
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        <form method="post" action="{% url 'custom_auth:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">LOGOUT</button>
+        </form>
+    </div>
+{% endblock %}
