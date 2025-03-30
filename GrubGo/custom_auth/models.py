@@ -1,5 +1,7 @@
 from django.db import models
+from django.shortcuts import reverse
 import random
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -14,7 +16,7 @@ class CustomUser(AbstractUser):
         ("chef", "Chef"),
     ]
     school = models.ForeignKey(
-        "School", on_delete=models.CASCADE, null=True, blank=True
+        "School", on_delete=models.CASCADE, null=True, blank=True, related_name="created_schools"
     )
     role = models.CharField(
         max_length=200,
@@ -36,6 +38,9 @@ class School(models.Model):
     school_code = models.CharField(
         max_length=7, unique=True, blank=True, null=True,
     )
+    users = models.ManyToManyField(CustomUser, related_name='schools', blank=True)
+
+
     def __str__(self):
         return self.school_name
     @property
@@ -55,5 +60,8 @@ class School(models.Model):
             self.school_code = self.generate_school_code()
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.school_name
+
+
+    def get_absolute_url(self):
+        return reverse('school:detail-schools', kwargs={'school_code': self.school_code})
+
