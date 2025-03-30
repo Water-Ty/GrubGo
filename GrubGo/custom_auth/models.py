@@ -8,7 +8,6 @@ from django.contrib.auth import get_user_model
 
 from django.contrib.auth.models import AbstractUser
 
-from GrubGo.order.models import Order
 
 
 class CustomUser(AbstractUser):
@@ -41,7 +40,7 @@ class School(models.Model):
         max_length=7, unique=True, blank=True, null=True,
     )
     users = models.ManyToManyField(CustomUser, related_name='schools', blank=True)
-    orders = models.ManyToManyField(Order, related_name='schools', blank=True)
+    orders = models.ManyToManyField("order.Order", related_name='schools', blank=True)
 
 
     def __str__(self):

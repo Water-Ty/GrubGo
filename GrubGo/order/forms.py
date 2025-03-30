@@ -1,8 +1,9 @@
 from django import forms
-from .models import FoodChoice, Order
+from .models import Order
 
 class OrderForm(forms.ModelForm):
-    food_choice = forms.ModelMultipleChoiceField(queryset=FoodChoice.objects.all(), widget=forms.CheckboxSelectMultiple)
+
     class Meta:
+
         model = Order
-        fields = []
+        fields = ("food_choice",)

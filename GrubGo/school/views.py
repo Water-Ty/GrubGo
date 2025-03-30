@@ -5,7 +5,7 @@ from django.views.generic import CreateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SchoolForm, JoinSchool
 from custom_auth.models import School
-
+from order.models import Order
 
 # Create your views here.
 
@@ -27,6 +27,7 @@ class AddSchoolForm(CreateView, LoginRequiredMixin):
         return response
 
 class ListSchoolsView(ListView, LoginRequiredMixin):
+
     model = School
     template_name = "school/ListSchools.html"
     context_object_name = "schools"
@@ -36,6 +37,11 @@ class ListSchoolsView(ListView, LoginRequiredMixin):
 
 
 class SchoolDetailView(DetailView, LoginRequiredMixin):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["orders"] = Order.objects.filter(school=self.object)
+        return context
+
     model = School
     context_object_name = "school"
     template_name = "school/SchoolDetailView.html"

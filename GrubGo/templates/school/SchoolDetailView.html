@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="container mt-4">
-    <div class="row">
+    <!-- School Information Section -->
+    <div class="row mb-4">
         <div class="col-12">
             <h2 class="text-center mb-4">School Information</h2>
         </div>
@@ -10,17 +11,56 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h6 class="font-weight-bold">School Name</h6>
-            <p>{{ school.school_name }}</p>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">School Name</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ school.school_name }}</p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            <h6 class="font-weight-bold">School Code</h6>
-            <p>{{ school.school_code }}</p>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">School Code</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ school.school_code }}</p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            <h6 class="font-weight-bold">School Description</h6>
-            <p>{{ school.school_description }}</p>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">School Description</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ school.school_description }}</p>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">Orders for {{ school.school_name }}</h2>
+
+        {% if orders %}
+            <div class="list-group">
+                {% for order in orders %}
+                    <div class="list-group-item">
+                        <h5>Order ID: {{ order.id }}</h5>
+                        <p><strong>User:</strong> {{ order.user }}</p>
+                        <p><strong>Food Choices:</strong> {{ order.food_choice }}</p>
+                        <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-muted">No orders for this school.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
+
