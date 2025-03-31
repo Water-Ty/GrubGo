@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
+
 class SchoolModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.school_code
@@ -51,8 +52,7 @@ class CustomLoginForm(AuthenticationForm):
     def clean(self):
         cleaned_data = super().clean()  # Call the parent clean method
 
-        username = cleaned_data.get('username')
-        password = cleaned_data.get('password')
-
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
 
         return cleaned_data

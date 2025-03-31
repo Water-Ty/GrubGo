@@ -9,6 +9,7 @@ from order.models import Order
 
 # Create your views here.
 
+
 class AddSchoolForm(CreateView, LoginRequiredMixin):
     model = School
     form_class = SchoolForm
@@ -21,10 +22,13 @@ class AddSchoolForm(CreateView, LoginRequiredMixin):
 
         # After saving, associate the current user with the school
         school = self.object  # `self.object` is the newly created school
-        school.users.add(self.request.user)  # Add the logged-in user to the `users` field of the school
+        school.users.add(
+            self.request.user
+        )  # Add the logged-in user to the `users` field of the school
 
         # Return the response
         return response
+
 
 class ListSchoolsView(ListView, LoginRequiredMixin):
 
@@ -65,16 +69,16 @@ class SchoolDetailView(DetailView, LoginRequiredMixin):
 
 
 class JoinSchoolView(LoginRequiredMixin, FormView):
-    template_name = 'school/JoinSchool.html'
+    template_name = "school/JoinSchool.html"
     form_class = JoinSchool
-    success_url = reverse_lazy('school:list-schools')
+    success_url = reverse_lazy("school:list-schools")
 
     def form_valid(self, form):
         # Get the current logged-in user
         user = self.request.user
 
         # Get the school code entered by the user
-        school_code = form.cleaned_data['school_code']
+        school_code = form.cleaned_data["school_code"]
 
         # Try to get the school by code
         school = get_object_or_404(School, school_code=school_code)
@@ -83,17 +87,18 @@ class JoinSchoolView(LoginRequiredMixin, FormView):
         if school in user.schools.all():
             # If already in the same school, show a message and redirect
             messages.error(self.request, "You are already a member of this school.")
-            return redirect('school:list-schools')  # Redirect to the list of schools
+            return redirect("school:list-schools")  # Redirect to the list of schools
 
         # Associate the user with the school
         school.users.add(user)  # Correctly add the user to the school
         school.save()  # Save the school object after modification
 
         # Success message
-        messages.success(self.request, f"You've successfully joined {school.school_name}!")
+        messages.success(
+            self.request, f"You've successfully joined {school.school_name}!"
+        )
 
         return super().form_valid(form)
-
 
     def form_invalid(self, form):
         messages.error(self.request, "Invalid school code. Please try again.")

@@ -5,7 +5,8 @@ from custom_auth.models import School
 class SchoolForm(forms.ModelForm):
     class Meta:
         model = School
-        fields = ("school_name","school_description")
+        fields = ("school_name", "school_description")
+
 
 class JoinSchool(forms.Form):
     school_code = forms.CharField(max_length=7, label="Enter School Code")
@@ -17,10 +18,9 @@ class JoinSchool(forms.Form):
         return code
 
 
-
 class JoinSchoolForm(forms.Form):
     school_code = forms.CharField(
         max_length=7,  # Assuming the school code is 7 characters
         required=True,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter School Code'})
+        widget=forms.TextInput(attrs={"placeholder": "Enter School Code"}),
     )
