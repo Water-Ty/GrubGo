@@ -35,7 +35,7 @@ class CustomUser(AbstractUser):
 
 class School(models.Model):
     school_name = models.CharField(max_length=200, null=False, blank=False, unique=True)
-    school_description = models.TextField(null=False, blank=False, unique=False, default="My Unique Orginization!")
+    school_description = models.TextField(null=False, blank=False, unique=False, default="My Unique Organization!")
     school_code = models.CharField(
         max_length=7, unique=True, blank=True, null=True,
     )
